@@ -1,5 +1,5 @@
 nav {
-    height: 90px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content:space-between;
@@ -9,4 +9,7 @@ nav {
 .title_nav_home {
     height: 90px;
     margin: 0px 0 0 50px;
+}
+.contain_button_dropdown{
+    display: flex;
 }

@@ -1,10 +1,14 @@
-import './Button.css'
+import { Buttons } from './Button.Styled';
 
-function Button({text,larg,haut}) {
+function Button({text,largeur,hauteur, marge , backgr}) {
+    
     return (
-        <button 
-            className = 'button_nav'
-            style={{width:larg,height:haut}}>{text}</button>
+        <Buttons 
+            bg={backgr}
+            larg={largeur} 
+            haut={hauteur}
+            marg={marge}
+        >{text}</Buttons>
     )
 }
 

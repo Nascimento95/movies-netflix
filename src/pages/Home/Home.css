@@ -2,22 +2,24 @@
     background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/1691099b-ff71-4321-bd54-1bba46b0886b/76594088-c248-4b7b-87ad-8aed1c1db427/FR-fr-20220228-popsignuptwoweeks-perspective_alpha_website_large.jpg");
     background-size: cover;
     height: 100vh;
-    /* background: rgba(0,0,0 ,0.5); */
-    /* filter: brightness(40%); */
-    /* bac */
+}
+.header_nav_home{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dropAndButton {
+    display: flex;
 }
 .card_black {
     height: 100vh;
     background: linear-gradient(to bottom , rgba(0,0,0,0.8),rgba(0,0,0,0.2),rgba(0,0,0,0.8));
-    /* display: flex;
-    align-items: center; */
 }
 .container_title{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* border:5px solid white; */
     width: 99%;
     height: 50vh;
     text-align: justify;
