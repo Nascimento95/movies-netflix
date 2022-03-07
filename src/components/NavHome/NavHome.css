@@ -1,0 +1,12 @@
+nav {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    
+}
+
+.title_nav_home {
+    height: 90px;
+    margin: 0px 0 0 50px;
+}
