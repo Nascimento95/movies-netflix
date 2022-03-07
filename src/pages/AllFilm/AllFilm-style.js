@@ -12,6 +12,7 @@ export const DivButton = styled.div`
     
 `
 export const DivMovies = styled.div`
+    margin:0px ;
     height:100vh ;
     background: rgba(0, 0, 0, 0.9);
 `

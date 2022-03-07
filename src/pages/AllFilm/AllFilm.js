@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import NavHome from '../../components/NavHome/NavHome';
 import { DivNavAndButton, DivButton, DivMovies, TitlePage } from './AllFilm-style';
 import Button from '../../components/Button/Button'
+import Card from "../../components/Card/Card";
 function AllFilm() {
 
     const [allFilms, setAllFilms] = useState(null)
@@ -35,6 +36,8 @@ function AllFilm() {
             </DivNavAndButton>
             <DivMovies>
                 <TitlePage> Movies</TitlePage>
+                <Card image ="https://www.citizenkid.com/uploads/medias/3f/e8/3fe8d171352c23f83b338457bb8c4953e9efd743.jpeg" title="Aquaman"/>
+                <Card />
             </DivMovies>
             {/* <h1>tous les films </h1> */}
             {/* {allFilms.map((film, index) => 
