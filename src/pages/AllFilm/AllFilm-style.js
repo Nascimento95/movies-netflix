@@ -38,4 +38,25 @@ export const ParaTitle = styled.p`
     color: white ;
     padding: 0 0 0 20px ;
 `
-
+export const DivHooverFavorite = styled.div`
+    position: relative;
+    bottom: 58px;
+    width: 200px;
+    height: 20px;
+    background-color: rgba(10,10,10,0.79);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* visibility: hidden ; */
+    &:hover{
+        /* visibility: visible ; */
+        position: relative;
+        bottom: 58px;
+        width: 200px;
+        height: 20px;
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+`

@@ -3,11 +3,11 @@ import  styled  from 'styled-components'
 export const DivContainerCard = styled.div`
     width: 200px ;
     height: 320px ;
-    background: rgba(0, 0, 0, 0.1);
+    /* background: rgba(0, 0, 0, 0.1); */
     display: flex ;
     flex-direction: column ;
     align-items: center ;
-    margin: 10px 50px 20px 0px;
+    margin: 10px 50px 20px 0px;    
 `
 
 export const ImageCard = styled.img`
@@ -23,3 +23,4 @@ export const Title = styled.p`
     color: white ;
     
 ` 
+
