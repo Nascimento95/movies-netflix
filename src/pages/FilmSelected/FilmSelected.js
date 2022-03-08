@@ -9,20 +9,20 @@ import {Container, DivImage, DivText, DivNav} from './FilmSelected.style'
 function Filmselected() {
     
     let navigate = useNavigate()
-    const {id} =useParams()
     const [justOneMovie, setJustOneMovie] = useState(null)
     const oneMovies = useSelector((state => state.getAllMovies.movies))
-
-    const filterArray = (array) => {
-        const movieSelected = array.filter((movie) =>  movie.title === id)
-        setJustOneMovie(movieSelected)
-
-    }
+    
+    const {id} =useParams()
     useEffect(() => {
         if(justOneMovie === null){
+            const filterArray = (array) => {
+                const movieSelected = array.filter((movie) =>  movie.title === id)
+                setJustOneMovie(movieSelected)
+        
+            }
             filterArray(oneMovies)
         }
-    }, [])
+    }, [id, justOneMovie, oneMovies])
     
     const goPageMovie = () => navigate("/allfilm")
     

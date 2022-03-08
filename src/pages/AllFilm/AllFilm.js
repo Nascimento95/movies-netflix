@@ -20,7 +20,7 @@ function AllFilm() {
         if(movies.movies.length === 0) {
             dispatch(allMoviesData())
         }
-    }, [])
+    }, [dispatch, movies.movies.length])
 
     const favorite = () =>{
         setFavoriteToggle(!favoriteToggle)

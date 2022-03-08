@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 function Favoris() {
     let navigate = useNavigate()
     const favoriteMovies = useSelector((state => state.getAllMovies))
-    const [favorisId , setFavorisId] = useState(null)
+    const [favorisId , setFavorisId] = useState([])
     const dispatch = useDispatch()
     console.log(favoriteMovies)
     useEffect(() => {
@@ -20,11 +20,11 @@ function Favoris() {
             getStorage()
             filterMovie(favoriteMovies, favorisId)
         }
-    }, [])
+    }, [dispatch, favorisId, favoriteMovies])
 
     const getStorage = () => {
         const favorite = localStorage.getItem("idFilm")
-        const array = JSON.parse(favorite)
+        let array = JSON.parse(favorite)
         if (!array){
             array = []
         }
