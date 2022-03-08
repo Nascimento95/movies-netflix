@@ -5,11 +5,13 @@ import Button from '../../components/Button/Button'
 import Card from "../../components/Card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { allMoviesData } from "../../redux/actions/fetchMovies";
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { AiOutlineHeart, AiFillHeart} from 'react-icons/ai';
 function AllFilm() {
+
+    let navigate = useNavigate()
+
     const movies = useSelector((state => state.getAllMovies))
-    // console.log("mon log de movie",movies)
     const [favoriteToggle, setFavoriteToggle] = useState(false)
     
     const dispatch = useDispatch()
@@ -38,14 +40,22 @@ function AllFilm() {
             arrayStorage.push(id)
             localStorage.setItem("idFilm",JSON.stringify(arrayStorage))
         }
-        console.log(id)
+        
     }
-    console.log(movies)
+    
+    const goFavoris = () => {
+        navigate('/allfilm/favoris')
+    }
+
     return (
         <ContainerAll>
             <DivNavAndButton>
                 <NavHome/>
                 <DivButton>
+                    <Button 
+                        goMovies={goFavoris}
+                        text="Favoris"
+                    />
                     <Button text="S'inscrire"/>
                 </DivButton>
             </DivNavAndButton>

@@ -1,4 +1,4 @@
-import { DivContainerCard, ImageCard, Title, DivHooverFavorite } from './Card.style';
+import { DivContainerCard, ImageCard, Title} from './Card.style';
 
 function Card({image , title}) {
 

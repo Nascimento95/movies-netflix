@@ -3,6 +3,7 @@ import Home from "./pages/Home/Home";
 import AllFilm from "./pages/AllFilm/AllFilm"
 import Filmselected from './pages/FilmSelected/FilmSelected';
 import Favoris from './pages/Favoris/Favoris';
+import NotFound from './pages/Notfound/NotFound';
 const App = () => {
   return (
     <div>
@@ -11,6 +12,7 @@ const App = () => {
         <Route path="/allfilm" element={<AllFilm />}/>
         <Route path="/allfilm/:id" element={<Filmselected/>}/>
         <Route path="/allfilm/favoris" element={<Favoris/>}/>
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </div>
   );

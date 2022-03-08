@@ -37,7 +37,7 @@ function Filmselected() {
                     <NavHome/>
             </DivNav>
             {justOneMovie.map(movie => 
-                <Container > 
+                <Container key={movie.title} > 
                     <DivImage img={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}>
 
                     </DivImage>
