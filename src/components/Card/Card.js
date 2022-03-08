@@ -1,10 +1,10 @@
 import { DivContainerCard, ImageCard, Title } from './Card.style';
 
 function Card({image , title}) {
-    console.log(image)
+    
     return (
         <DivContainerCard>
-            <ImageCard  img={image} />
+            <ImageCard  img={`https://image.tmdb.org/t/p/w300/${image}`} />
             <Title>{title}</Title>
         </DivContainerCard>
     )

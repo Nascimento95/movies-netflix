@@ -1,8 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
-const rootReducer = combineReducers({
+import getAllMovies from "../reducers/getMovie";
 
+const rootReducer = combineReducers({
+    getAllMovies
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunk))

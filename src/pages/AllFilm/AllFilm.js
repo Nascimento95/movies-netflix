@@ -1,51 +1,53 @@
-import { useEffect, useState } from "react"
-
-// import getApi from '../../api/getApi'
+import { useEffect } from "react"
 import NavHome from '../../components/NavHome/NavHome';
-import { DivNavAndButton, DivButton, DivMovies, TitlePage } from './AllFilm-style';
+import { DivNavAndButton, DivButton, DivMovies,DivTittle, TitlePage, ParaTitle, ContainerAll } from './AllFilm-style';
 import Button from '../../components/Button/Button'
 import Card from "../../components/Card/Card";
-function AllFilm() {
+import { useDispatch, useSelector } from "react-redux";
+import { allMoviesData } from "../../redux/actions/fetchMovies";
+import {Link} from 'react-router-dom'
 
-    const [allFilms, setAllFilms] = useState(null)
+function AllFilm() {
+    const movies = useSelector((state => state.getAllMovies))
+    // console.log("mon log de movie",movies)
+
+    const dispatch = useDispatch()
+
     useEffect(() => {
-        getFilm()
-    }, [])
-    const getFilm = async() => {
-        const response = await fetch("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=74ff4d5b18f55c304a239fadf716fe2f")
-    
-        if (response.status >= 400) {
-            throw response.stautusText
+        if(movies.movies.length === 0) {
+            dispatch(allMoviesData())
         }
-        const allFilm = await response.json()
-        const data = setAllFilms(allFilm.results)
-        return data
-    };
-    console.log(allFilms)
-    if(allFilms === null) {
+    }, [])
+
+    if (movies.movies.length === 0) {
         return <p>Chargement...</p>
     }
+
     return (
-        <div>
+        <ContainerAll>
             <DivNavAndButton>
                 <NavHome/>
                 <DivButton>
                     <Button text="S'inscrire"/>
-                    <Button text="okok"/>
                 </DivButton>
             </DivNavAndButton>
-            <DivMovies>
+            <DivTittle>
                 <TitlePage> Movies</TitlePage>
-                <Card image ="https://www.citizenkid.com/uploads/medias/3f/e8/3fe8d171352c23f83b338457bb8c4953e9efd743.jpeg" title="Aquaman"/>
-                <Card />
+                <ParaTitle>Voici tous les films disponnible sur netflix actuellement</ParaTitle>
+            </DivTittle>
+            <DivMovies>
+                {movies.movies.map((movie,index) =>
+                    <div key={index}>
+                        <Link to={`/allfilm/${movie.title}`} >
+                            <Card 
+                                    image={movie.poster_path}  
+                                    title={movie.title} 
+                                /> 
+                        </Link> 
+                    </div>
+                )}
             </DivMovies>
-            {/* <h1>tous les films </h1> */}
-            {/* {allFilms.map((film, index) => 
-                <div key={`${film.title} ${index}`}>
-                    <p>{film.title}</p>
-                </div>
-            )} */}
-        </div>
+        </ContainerAll>
     )
 }
 
