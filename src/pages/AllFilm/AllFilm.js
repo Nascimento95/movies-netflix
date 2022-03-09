@@ -12,7 +12,7 @@ function AllFilm() {
     let navigate = useNavigate()
 
     const movies = useSelector((state => state.getAllMovies))
-    const [favoriteToggle, setFavoriteToggle] = useState(false)
+    // const [favoriteToggle, setFavoriteToggle] = useState(false)
     const [search, setSearch] = useState("")
     const dispatch = useDispatch()
 
@@ -22,11 +22,11 @@ function AllFilm() {
         }
     }, [dispatch, movies.movies.length])
 
-    const favorite = (film) =>{
-        console.log("mon",film)
-        film = !true
-        // setFavoriteToggle(!favoriteToggle)
-    }
+    // const favorite = (film) =>{
+    //     console.log("mon",film)
+    //     film = !true
+    //     // setFavoriteToggle(!favoriteToggle)
+    // }
 
     if (movies.movies.length === 0) {
         return <p>Chargement...</p>
