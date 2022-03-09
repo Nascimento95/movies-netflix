@@ -3,13 +3,10 @@ import NavHome from '../../components/NavHome/NavHome'
 import Input from '../../components/Input/Input'
 import Button from '../../components/Button/Button'
 import DropDown from '../../components/DropDown/DropDown';
-import { useNavigate } from 'react-router-dom';
+
 
 function Home() {
-    let navigate = useNavigate()
-    const goPageAllmovie = () => {
-        navigate("/allfilm")
-    }
+    
     return (
         <div className=" header_home">
             <div className="card_black">
@@ -26,13 +23,6 @@ function Home() {
                     <p>Prêt a regarder Le catalogue de netflix ? Saissisez votre adresse e-mail pour crée votre compte gratuit.</p>
                     <div className='contain_form_home'>
                         <Input/>
-                        <Button 
-                            goMovies={goPageAllmovie}
-                            text="Commencer" 
-                            largeur="200px" 
-                            hauteur="100%"
-                            marge = "0px"
-                        />
                     </div>
                 </div>
             </div>

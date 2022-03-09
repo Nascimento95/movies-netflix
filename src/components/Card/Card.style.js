@@ -19,6 +19,7 @@ export const ImageCard = styled.img`
 `
 
 export const Title = styled.p`
+    height:18px ;
     margin: 0px ;
     color: white ;
     

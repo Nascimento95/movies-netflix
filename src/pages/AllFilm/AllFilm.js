@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import NavHome from '../../components/NavHome/NavHome';
-import { DivNavAndButton, DivButton, DivMovies,DivTittle, TitlePage, ParaTitle, ContainerAll, DivHooverFavorite } from './AllFilm-style';
+import { DivNavAndButton, DivButton, DivMovies,DivTittle, TitlePage, ParaTitle, ContainerAll, DivHooverFavorite, Input } from './AllFilm-style';
 import Button from '../../components/Button/Button'
 import Card from "../../components/Card/Card";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,7 @@ function AllFilm() {
 
     const movies = useSelector((state => state.getAllMovies))
     const [favoriteToggle, setFavoriteToggle] = useState(false)
-    
+    const [search, setSearch] = useState("")
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -22,8 +22,10 @@ function AllFilm() {
         }
     }, [dispatch, movies.movies.length])
 
-    const favorite = () =>{
-        setFavoriteToggle(!favoriteToggle)
+    const favorite = (film) =>{
+        console.log("mon",film)
+        film = !true
+        // setFavoriteToggle(!favoriteToggle)
     }
 
     if (movies.movies.length === 0) {
@@ -47,6 +49,11 @@ function AllFilm() {
         navigate('/allfilm/favoris')
     }
 
+    const handleSearch = (e) => {
+        let value = e.target.value
+        setSearch(value)
+    }
+    console.log(movies.movies)
     return (
         <ContainerAll>
             <DivNavAndButton>
@@ -62,9 +69,16 @@ function AllFilm() {
             <DivTittle>
                 <TitlePage> Movies</TitlePage>
                 <ParaTitle>Voici tous les films disponnible sur netflix actuellement</ParaTitle>
+                <Input
+                    type="text"
+                    placeholder="Rechercher"
+                    onChange={handleSearch}
+                />
+                
+                
             </DivTittle>
             <DivMovies>
-                {movies.movies.map((movie,index) =>
+                {movies.movies.filter((movie) =>{return movie.title.toLowerCase().includes(search.toLowerCase())} ).map((movie,index) =>
                     <div key={index}>
                         <Link style={{textDecoration:"none"}} to={`/allfilm/${movie.title}`} >
                             <Card 
@@ -73,7 +87,7 @@ function AllFilm() {
                                 /> 
                         </Link> 
                         <DivHooverFavorite onClick={() => storageFavorite(movie.id) } >
-                            {favoriteToggle? <p  onClick={favorite}><AiFillHeart style={{color:"white"}}/></p> : <p onClick={favorite}><AiOutlineHeart style={{color:"white"}}/></p> }
+                            {movie.adult? <p  onClick={()=> !movie.adult}><AiFillHeart style={{color:"white"}}/></p> : <p onClick={()=> movie.adult === console.log(!movie.adult,"le vrais",movie.adult)}><AiOutlineHeart style={{color:"white"}}/></p> }
                             {/* <p onClick={favorite}><AiOutlineHeart style={{color:"white"}}/></p> */}
                         </DivHooverFavorite>
                     </div>

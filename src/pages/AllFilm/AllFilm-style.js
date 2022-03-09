@@ -32,6 +32,10 @@ export const TitlePage = styled.h1`
 export const DivTittle = styled.div`
     background: rgba(0, 0, 0, 0.9);
     padding-bottom: 50px ;
+    display: flex ;
+    flex-direction: column ;
+    align-items: center ;
+    
 `
 
 export const ParaTitle = styled.p`
@@ -59,4 +63,10 @@ export const DivHooverFavorite = styled.div`
         justify-content: center;
         align-items: center;
     }
+`
+
+export const Input = styled.input`
+    width: 400px ;
+    height: 30px ;
+
 `

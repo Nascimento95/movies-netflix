@@ -12,6 +12,7 @@ function Favoris() {
     let navigate = useNavigate()
     const favoriteMovies = useSelector((state => state.getAllMovies))
     const [favorisId , setFavorisId] = useState([])
+    // const [movieFav, setMovieFav] = useState()
     const dispatch = useDispatch()
     console.log(favoriteMovies)
     useEffect(() => {
@@ -21,7 +22,7 @@ function Favoris() {
             filterMovie(favoriteMovies, favorisId)
         }
     }, [dispatch, favorisId, favoriteMovies])
-
+    
     const getStorage = () => {
         const favorite = localStorage.getItem("idFilm")
         let array = JSON.parse(favorite)
@@ -31,10 +32,17 @@ function Favoris() {
         return setFavorisId(array)
     }
     
+    // const newArray = (array) => {
+    //     console.log(array,"array")
+    //     const result = array.movies.map(movie => [{...movie, favoris : false}])
+    //     console.log("mon resulta dans la func",result)
+    // }
+    // newArray(favoriteMovies)
+    
     const goHomePage = () => {
         navigate('/allfilm')
     }
-    console.log(" mon state",favorisId )
+    // console.log(" mon state",favorisId )
 
     const filterMovie = (array1 , array2) => {
         return array1.movies.filter((movie, index) => movie.id === array2[index])
@@ -42,8 +50,8 @@ function Favoris() {
     
     const filter = filterMovie(favoriteMovies , favorisId)
     
-    console.log(" le resulta de mon filter",filter)
-    console.log(favorisId)
+    // console.log(" le resulta de mon filter",filter)
+    // console.log(favorisId)
     if ( favorisId === null ) {
         return <p> Chargement ...</p>
     }

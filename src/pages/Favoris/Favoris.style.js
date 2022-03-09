@@ -12,7 +12,7 @@ export const DivNav = styled.div`
 `
 
 export const DivMovie = styled.div`
-    width:99% ;
+    width:100% ;
     height: 100vh ;
     display: flex ;
     justify-content: center ;
