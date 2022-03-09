@@ -7,12 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { allMoviesData } from "../../redux/actions/fetchMovies";
 import {Link, useNavigate} from 'react-router-dom'
 import { AiOutlineHeart, AiFillHeart} from 'react-icons/ai';
+
 function AllFilm() {
 
     let navigate = useNavigate()
 
     const movies = useSelector((state => state.getAllMovies))
-    // const [favoriteToggle, setFavoriteToggle] = useState(false)
+    const [filmFavoris, setFilmFavoris] = useState([])
     const [search, setSearch] = useState("")
     const dispatch = useDispatch()
 
@@ -20,14 +21,8 @@ function AllFilm() {
         if(movies.movies.length === 0) {
             dispatch(allMoviesData())
         }
-    }, [dispatch, movies.movies.length])
-
-    // const favorite = (film) =>{
-    //     console.log("mon",film)
-    //     film = !true
-    //     // setFavoriteToggle(!favoriteToggle)
-    // }
-
+    }, [dispatch, movies.movies.length, movies.movies.adult])
+    
     if (movies.movies.length === 0) {
         return <p>Chargement...</p>
     }
@@ -48,12 +43,19 @@ function AllFilm() {
     const goFavoris = () => {
         navigate('/allfilm/favoris')
     }
-
+    const deleteIdFavoris = (idfav, idmovie) => {
+        let index = idfav.indexOf(idmovie)
+        let newState = [...filmFavoris]
+        if (idfav.includes(idmovie)){
+            newState.splice(index,1)
+            setFilmFavoris(newState)
+        }
+    }
     const handleSearch = (e) => {
         let value = e.target.value
         setSearch(value)
     }
-    console.log(movies.movies)
+
     return (
         <ContainerAll>
             <DivNavAndButton>
@@ -87,8 +89,7 @@ function AllFilm() {
                                 /> 
                         </Link> 
                         <DivHooverFavorite onClick={() => storageFavorite(movie.id) } >
-                            {movie.adult? <p  onClick={()=> !movie.adult}><AiFillHeart style={{color:"white"}}/></p> : <p onClick={()=> movie.adult === console.log(!movie.adult,"le vrais",movie.adult)}><AiOutlineHeart style={{color:"white"}}/></p> }
-                            {/* <p onClick={favorite}><AiOutlineHeart style={{color:"white"}}/></p> */}
+                            {filmFavoris.includes(movie.id) ? <p onClick={() => deleteIdFavoris(filmFavoris, movie.id)}><AiFillHeart style={{color:"white"}}/></p> : <p onClick={()=> { setFilmFavoris([...filmFavoris , movie.id])}}><AiOutlineHeart style={{color:"white"}}/></p> }
                         </DivHooverFavorite>
                     </div>
                 )}

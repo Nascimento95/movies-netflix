@@ -51,14 +51,15 @@ export const DivHooverFavorite = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    /* visibility: hidden ; */
+    opacity:0 ;
+    transition: opacity 1s ;
     &:hover{
-        /* visibility: visible ; */
+        opacity:1 ;
         position: relative;
         bottom: 58px;
         width: 200px;
         height: 20px;
-        background-color: red;
+        background-color:rgba(10,10,10,0.79);
         display: flex;
         justify-content: center;
         align-items: center;
