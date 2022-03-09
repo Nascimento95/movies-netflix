@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
-    movies : []
+    movies : [],
+    favoris:[]
 }
 
 const getAllMovies = ( state = INITIAL_STATE, action) => {
@@ -8,6 +9,9 @@ const getAllMovies = ( state = INITIAL_STATE, action) => {
         case 'GETMOVIES':
             
             return {...state, movies: action.payload}
+        case'PUTFAVORIS' : 
+            console.log('je suis dans la conddi reducer')
+            return { ...state, favoris: action.payload}
         default:
             return state
     }

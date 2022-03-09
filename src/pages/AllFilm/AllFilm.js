@@ -5,6 +5,7 @@ import Button from '../../components/Button/Button'
 import Card from "../../components/Card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { allMoviesData } from "../../redux/actions/fetchMovies";
+import { putFavorisFunc } from "../../redux/actions/favoris";
 import {Link, useNavigate} from 'react-router-dom'
 import { AiOutlineHeart, AiFillHeart} from 'react-icons/ai';
 
@@ -13,31 +14,46 @@ function AllFilm() {
     let navigate = useNavigate()
 
     const movies = useSelector((state => state.getAllMovies))
+
     const [filmFavoris, setFilmFavoris] = useState([])
     const [search, setSearch] = useState("")
+
     const dispatch = useDispatch()
 
     useEffect(() => {
         if(movies.movies.length === 0) {
             dispatch(allMoviesData())
         }
-    }, [dispatch, movies.movies.length, movies.movies.adult])
+        
+    }, [dispatch, movies.movies.length, movies.movies.adult,])
     
+    if(filmFavoris === 1) {
+        dispatch(putFavorisFunc(filmFavoris))
+    }
+
     if (movies.movies.length === 0) {
         return <p>Chargement...</p>
     }
     const storageFavorite = (id) =>{
-        
+        console.log("id du film",id)
+        let arrayLocalStorage = JSON.parse(localStorage.getItem('idFilm'))
+        console.log(arrayLocalStorage)
         const favoris = localStorage.getItem("idFilm")
         if(!favoris) {
             localStorage.setItem("idFilm",JSON.stringify([id]))
-
-        } else {
+            
+        }
+        if(favoris &&  !arrayLocalStorage.includes(id)) {
             let arrayStorage = JSON.parse(favoris)
             arrayStorage.push(id)
+            console.log("mon includ", arrayLocalStorage.includes(id))
             localStorage.setItem("idFilm",JSON.stringify(arrayStorage))
         }
         
+        
+    }
+    if(filmFavoris.length === 0) {
+        localStorage.removeItem('idFilm')
     }
     
     const goFavoris = () => {
@@ -89,7 +105,10 @@ function AllFilm() {
                                 /> 
                         </Link> 
                         <DivHooverFavorite onClick={() => storageFavorite(movie.id) } >
-                            {filmFavoris.includes(movie.id) ? <p onClick={() => deleteIdFavoris(filmFavoris, movie.id)}><AiFillHeart style={{color:"white"}}/></p> : <p onClick={()=> { setFilmFavoris([...filmFavoris , movie.id])}}><AiOutlineHeart style={{color:"white"}}/></p> }
+                            {filmFavoris.includes(movie.id) ? 
+                            <p onClick={() => deleteIdFavoris(filmFavoris, movie.id)}><AiFillHeart style={{color:"white"}}/></p> 
+                            : 
+                            <p onClick={()=> { setFilmFavoris([...filmFavoris , movie.id])}}><AiOutlineHeart style={{color:"white"}}/></p> }
                         </DivHooverFavorite>
                     </div>
                 )}
