@@ -34,7 +34,7 @@ function AllFilm() {
     if (movies.movies.length === 0) {
         return <p>Chargement...</p>
     }
-    
+
     const storageFavorite = (id) =>{
         
         let arrayLocalStorage = JSON.parse(localStorage.getItem('idFilm'))
@@ -108,7 +108,7 @@ function AllFilm() {
                                 /> 
                         </Link> 
                         <DivHooverFavorite onClick={() => storageFavorite(movie.id) } >
-                            {filmFavoris.includes(movie.id) || arrayLocalStorages.includes(movie.id) ? 
+                            {filmFavoris.includes(movie.id)  ? 
                             <p onClick={() => deleteIdFavoris(filmFavoris, movie.id)}><AiFillHeart style={{color:"white"}}/></p> 
                             : 
                             <p onClick={()=> { setFilmFavoris([...filmFavoris , movie.id])}}><AiOutlineHeart style={{color:"white"}}/></p> }
