@@ -73,7 +73,7 @@ function AllFilm() {
         setSearch(value)
     }
 
-    let arrayLocalStorages = JSON.parse(localStorage.getItem('idFilm'))
+    // let arrayLocalStorages = JSON.parse(localStorage.getItem('idFilm'))
 
     return (
         <ContainerAll>
