@@ -34,28 +34,29 @@ function AllFilm() {
     if (movies.movies.length === 0) {
         return <p>Chargement...</p>
     }
+    
     const storageFavorite = (id) =>{
-        console.log("id du film",id)
+        
         let arrayLocalStorage = JSON.parse(localStorage.getItem('idFilm'))
-        console.log(arrayLocalStorage)
         const favoris = localStorage.getItem("idFilm")
+        
         if(!favoris) {
             localStorage.setItem("idFilm",JSON.stringify([id]))
-            
         }
+        
         if(favoris &&  !arrayLocalStorage.includes(id)) {
             let arrayStorage = JSON.parse(favoris)
             arrayStorage.push(id)
-            console.log("mon includ", arrayLocalStorage.includes(id))
             localStorage.setItem("idFilm",JSON.stringify(arrayStorage))
         }
         
-        
+        if( arrayLocalStorage !== null && arrayLocalStorage.includes(id)){
+            let index = arrayLocalStorage.indexOf(id)
+            arrayLocalStorage.splice(index,1)
+            localStorage.setItem("idFilm",JSON.stringify(arrayLocalStorage))
+        } 
     }
-    if(filmFavoris.length === 0) {
-        localStorage.removeItem('idFilm')
-    }
-    
+
     const goFavoris = () => {
         navigate('/allfilm/favoris')
     }
@@ -71,6 +72,8 @@ function AllFilm() {
         let value = e.target.value
         setSearch(value)
     }
+
+    let arrayLocalStorages = JSON.parse(localStorage.getItem('idFilm'))
 
     return (
         <ContainerAll>
@@ -105,7 +108,7 @@ function AllFilm() {
                                 /> 
                         </Link> 
                         <DivHooverFavorite onClick={() => storageFavorite(movie.id) } >
-                            {filmFavoris.includes(movie.id) ? 
+                            {filmFavoris.includes(movie.id) || arrayLocalStorages.includes(movie.id) ? 
                             <p onClick={() => deleteIdFavoris(filmFavoris, movie.id)}><AiFillHeart style={{color:"white"}}/></p> 
                             : 
                             <p onClick={()=> { setFilmFavoris([...filmFavoris , movie.id])}}><AiOutlineHeart style={{color:"white"}}/></p> }

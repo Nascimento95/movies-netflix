@@ -18,6 +18,7 @@ export const DivButton = styled.div`
 export const DivMovies = styled.div`
     margin:0px ;
     height: 100vh ;
+    overflow: scroll ;
     width:100% ;
     display: flex ;
     justify-content: center ;
